@@ -1,0 +1,292 @@
+{% extends "app1/base.html" %}
+{% block content %}
+
+
+<style>
+  * {
+    margin: 0;
+    padding: 0 .90px;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --green: #1dde5aec;
+    --deepGreen: #0b8732fb;
+  }
+
+  .book_appointment_container {
+    height: auto;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 10px;
+    margin: 0;
+  }
+
+  .heading {
+    text-align: center;
+    margin: 25px 0;
+  }
+
+  .heading span {
+    color: var(--deepGreen);
+  }
+
+  .appointment_booking_card {
+    height: auto;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .appointment_booking_card2 {
+    height: auto;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    /* flex-wrap: wrap; */
+    background-color: rgb(255, 255, 255, 0.758);
+    border-radius: 7px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .box1 {
+    height: auto;
+    width: 100%;
+  }
+
+  .box1 img {
+    height: 239px;
+    width: 305px;
+  }
+
+  .box2 {
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    /* border: 2px solid black; */
+  }
+
+
+  .form_card {
+    height: auto;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 20px;
+    padding: 10px 30px;
+    background-color: rgba(255, 255, 255, 0.758);
+    border-radius: 7px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 10px;
+    display: flex;
+  }
+
+  #bookAppintmentButton {
+    background-color: var(--green);
+    width: 250px;
+    height: 60px;
+    font-size: 20px;
+    margin-top: 20px;
+  }
+
+
+  #timeContainer {
+    min-height: auto;
+    max-height: auto;
+    width: 70%;
+    box-sizing: border-box;
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+  }
+
+  .timeBoxed label {
+    display: inline-block;
+    width: 200px;
+    padding: 10px;
+    border: solid 2px #ccc;
+    transition: all 0.3s;
+    border-radius: 10px;
+    margin: 2px 0;
+  }
+
+  .timeBoxed input[type="radio"] {
+    display: none;
+  }
+
+  .timeBoxed input[type="radio"]+label {
+    border: solid 2px rgb(188, 188, 188);
+    background-color: rgba(128, 128, 128, 0.568);
+    color: black;
+  }
+
+  @media screen and (max-width:710px) {
+    .form_card {
+      flex-direction: column;
+    }
+
+    .appointment_booking_card2 {
+      flex-direction: column;
+    }
+
+    .box1 img {
+      width: 100%;
+    }
+  }
+
+  /* .myTime{
+    background-color: red;
+  } */
+</style>
+<div class="book_appointment_container">
+  <!-- <div class="p-4 m-4"> -->
+  <!-- <div class="col-lg-8"> -->
+  <h2 class="heading">Book an <span>Appointment</span></h2>
+  {% for specialist in Specialists %}
+
+  <div class="appointment_booking_card">
+    <div class="appointment_booking_card2">
+      <div class="box1">
+        <img src="{{specialist.imageURL}}">
+      </div>
+      <div class="box2">
+        <h5><i class="fa-solid fa-user"></i>&nbsp; {{specialist.specialist_name}}</h5>
+        <p><i class="fa-solid fa-envelope"></i>&nbsp; {{specialist.email}} </p>
+        <p><i class="fa-solid fa-mobile-button"></i>&nbsp; {{specialist.phone}}</p>
+        <p><i class="fa-solid fa-location-dot"></i>&nbsp; {{specialist.locality}}</p>
+        <p><i class="fa-solid fa-briefcase"></i>&nbsp;{{specialist.experience}} Years</p>
+        <p><i class="fa-solid fa-indian-rupee-sign"></i> &nbsp;{{specialist.cunsultation_fees}}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+
+  <div class="form_card">
+
+    <!-- appointment booking form start -->
+    <form class="mt-4" method="post">
+      {% csrf_token %}
+      <div class="form-row justify-content-around ">
+        <div class="form-group col-md-12">
+          <label for="inputName">
+            <h5 class="ml-3">Name</h5>
+          </label>
+          <input type="text" class="form-control" id="Name" placeholder="Name" name="name" required>
+        </div>
+        <div class="form-group col-md-12">
+          <label for="mobileNumber">
+            <h5 class="ml-3">Mobile Number</h5>
+          </label>
+          <input type="number" class="form-control" id="mobileNumber" name="phone" placeholder="mobile" required>
+        </div>
+        <div class="form-group col-md-12">
+          <label for="email">
+            <h5 class="ml-3">Email</h5>
+          </label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="abc@email.com" required>
+        </div>
+        <div class="form-group col-md-12">
+          <label for="date">
+            <h5 class="ml-3">Choose Date</h5>
+          </label>
+          <input type="date" class="form-control" id="date" placeholder="dd-mm-yy" name="date" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="time">
+            <h5 class="ml-3">Start Time</h5>
+          </label>
+          <input type="time" class="form-control" id="time" name="time1" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="time">
+            <h5 class="ml-3">End Time</h5>
+          </label>
+          <input type="time" class="form-control" id="time" name="time2" required>
+        </div>
+      </div>
+      <div class="form-row justify-content-center ">
+        <button type="submit" class="btn  mb-3" id="bookAppintmentButton">Book Appointment</button>
+      </div>
+    </form>
+    <!-- appointment booking form end -->
+
+    <!-- booked date time container start -->
+    <div id="timeContainer">
+      <h3 class="text-center mt-4 mb-4">Booked Slots</h3>
+      <div class="timeBoxed" id="timeBoxed">
+      {% for t in time %}
+        <label for="time1" id="mytime"><b>{{t.date}}</b> <br> {{t.from_time}}-{{t.to_time}}</label>
+      {% endfor %}
+
+        <!---- <label for="time2">10:30 AM</label>
+
+        <input type="radio" id="time3" name="from_time" value="11:00 AM">
+        <label for="time3">11:00 AM</label>
+
+        <input type="radio" id="time4" name="from_time" value="11:30 AM">
+        <label for="time4">11:30 AM</label>
+
+        <input type="radio" id="time5" name="from_time" value="12:00 PM">
+        <label for="time5">12:00 PM</label>
+
+        <input type="radio" id="time6" name="from_time" value="12:30 PM">
+        <label for="time6">12:30 PM</label>
+
+        <input type="radio" id="time7" name="from_time" value="01:00 PM">
+        <label for="time7">01:00 PM</label>
+
+        <input type="radio" id="time8" name="from_time" value="01:30 PM">
+        <label for="time8">01:30 PM</label>
+
+        <input type="radio" id="time9" name="from_time" value="02:00 PM">
+        <label for="time9">02:00 PM</label>
+
+        <input type="radio" id="time10" name="from_time" value="02:30 PM">
+        <label for="time10">02:30 PM</label>
+
+        <input type="radio" id="time11" name="from_time" value="03:00 PM">
+        <label for="time11">03:00 PM</label>
+
+        <input type="radio" id="time12" name="from_time" value="03:30 PM">
+        <label for="time12">03:30 PM</label>
+
+        <input type="radio" id="time13" name="from_time" value="04:00 PM">
+        <label for="time12">04:00 PM</label>
+
+        <input type="radio" id="time14" name="from_time" value="04:30 PM">
+        <label for="time14">04:30 PM</label>
+
+        <input type="radio" id="time15" name="from_time" value="05:00 PM">
+        <label for="time15">05:00 PM</label>
+
+        <input type="radio" id="time16" name="from_time" value="05:30 PM">
+        <label for="time16">05:30 PM</label>
+
+        <input type="radio" id="time17" name="from_time" value="06:00 PM">
+        <label for="time17">06:00 PM</label>
+
+        
+
+        <input type="radio" id="time18" name="from_time" value="06:30 PM">
+        <label for="time18">06:30 PM</label> -->
+      </div>
+    </div>
+    <!-- booked date time container end -->
+
+  </div>
+</div>
+
+
+<script>
+  document.querySelector('form').onsubmit = function () {
+    let date = document.getElementById("date");
+    let time = document.getElementById('time');
+    alert("Your Appointment is successfully booked on " + (date.value) + ' at ' + (time.value));
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+    <!-- fontawesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
+    </script>
+
+    <title>Appointment Booking</title>
+
+    <style>
+        .profile {
+            margin-right: 110px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0 .90px;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --green: #1dde5aec;
+            --deepGreen: #0b8732fb;
+        }
+
+        html::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        html::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        html::-webkit-scrollbar-thumb {
+            background: #0eb551;
+        }
+
+        body {
+            background-color: #00ff4c1b;
+        }
+
+        /* Navbar start */
+        .navbar1 {
+            background-color: rgba(255, 255, 255, 0.89);
+            font-size: 18px;
+            color: black;
+            box-shadow: 0 3px 4px rgba(0, 0, 0, 0.274);
+        }
+
+        /* #navbarText ul {
+            margin: 0 auto;
+        } */
+
+        #navbarText ul li {
+            /* height: auto;
+            width: auto; */
+            border-radius: 3px;
+            /* border: 1px solid black; */
+            margin: 0 20px;
+            text-align: center;
+            padding: 0 8px;
+        }
+
+        #navbarText ul li:hover {
+            /* border-radius: 10px; */
+            background-color: var(--green);
+        }
+
+        #dropdownMenu2:hover {
+            background-color: var(--green);
+        }
+
+        .navbarDropdownMenu>a:hover {
+            background-color: var(--green);
+
+        }
+
+        @media screen and (max-width:987px) {
+            #navbarText ul {
+                margin: 0;
+            }
+        }
+        @media screen and (max-width:1170px) and (min-width:992px) {
+            #navbarText ul li a{
+                font-size: 17px;
+            }
+            #navbarText ul li {
+            margin: 0 10px;
+            padding: 0 8px;
+        }
+        }
+
+        /* Navbar end */
+
+        /* Container-2 CSS start*/
+        .container2 {
+            height: auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background-color: var(--deepGreen);
+            justify-items: center;
+            color: rgb(0, 0, 0);
+            /* margin-top: 100px; */
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .contact-us li {
+            padding: 5px 0;
+            list-style: none;
+            text-align: center;
+        }
+
+        .contact-us a {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .contact-us a:hover {
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+        }
+
+        .social-media {
+            display: flex;
+            align-items: center;
+            font-size: 30px;
+        }
+
+        .social-media i {
+            padding: 0 10px;
+            color: black;
+        }
+
+        /* Container-2 css end */
+    </style>
+</head>
+
+<body>
+    <!-- Navbar start -->
+    <nav class="navbar navbar-expand-lg navbar-light navbar1">
+        <a class="navbar-brand" href="{% url 'index' %}">Hospital</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'index' %}"><i class="fa fa-house"></i> Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#aboutUsContainer"><i class="fa-solid fa-user-group"></i> About</a>
+                </li>
+                <li class="nav-item active">
+                    <a href="{% url 'home' %}" class="nav-link "><i class="fa-solid fa-calendar-check"></i> Our
+                        Doctors</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#askQuestionContainer"><i class="fa-solid fa-circle-question"></i> Ask a Question</a>
+                </li>
+            </ul>
+
+            <span class="navbar-text profile">
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="fa-solid fa-user"></i> My Profile
+                    </button>
+                    <div class="dropdown-menu navbarDropdownMenu" aria-labelledby="dropdownMenu2">
+                        <a href="{% url 'user_login' %}" class="dropdown-item " type="button">User Login</a>
+                        <a href="{% url 'login' %}" class="dropdown-item btn" type="button">Doctor Login</a>
+                        {% if request.user.is_authenticated %}
+                        <a href="{% url 'profile_all' %}" class="dropdown-item " type="button">Doctor Profile</a>
+                        {% endif %}
+                        {% if request.user.is_authenticated or request.session.name %}
+                        <a href="{% url 'manage_appointment' %}" class="dropdown-item " type="button">Manage
+                            Appointment</a>
+                        {% endif %}
+                        <a href="{% url 'logout' %}" class="dropdown-item " type="button">Log out</a>
+                    </div>
+                </div>
+            </span>
+        </div>
+    </nav>
+    <!-- Navbar end -->
+    {% block content %}
+    {% endblock %}
+
+
+    <!-- footer start -->
+    <div class="container2">
+        <div class="contact-us">
+            <h4>Contact Us</h4>
+            <ul>
+                <li><a href="#">abc@email.com</a></li>
+                <li><a href="#">+91123456782</a></li>
+                <li><a href="#">Help Line</a></li>
+            </ul>
+        </div>
+        <div class="social-media">
+            <a href="#"><i class="fa-brands fa-facebook-square"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram-square"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter-square"></i></a>
+            <a href="#"><i class="fa-brands fa-google-plus-square"></i></a>
+        </div>
+    </div>
+    <!-- footer end -->
+</body>
+
+</html>

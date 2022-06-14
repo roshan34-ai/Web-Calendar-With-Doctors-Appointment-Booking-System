@@ -1,0 +1,225 @@
+{% extends 'app1/base.html' %}
+{% block content %}
+
+
+<style>
+    * {
+        margin: 0;
+        padding: 0 .90px;
+        box-sizing: border-box;
+        text-decoration: none;
+    }
+
+    :root {
+        --green: #1dde5aec;
+        --deepGreen: #0b8732fb;
+    }
+
+    .filter_section {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 10%;
+        margin-top: 50px;
+        margin-bottom: 15px;
+        padding: 0 9px;
+        /* margin: 20px 5px;
+        padding: 0 10px;
+        margin-bottom: 50px; */
+        box-sizing: border-box;
+        gap: 10px;
+    }
+
+    .filter_section input {
+        height: 44.9px;
+        margin: 0 2.4px;
+        border-radius: 4px;
+        background-color: rgba(255, 255, 255, 0.37);
+        border: 1px solid var(--deepGreen);
+    }
+
+    #search {
+        color: rgb(0, 0, 0);
+        background-color: var(--green);
+        cursor: pointer;
+        border-style: none;
+        border-radius: 4px;
+    }
+
+    @media screen and (max-width:710px) {
+        .filter_section {
+            grid-template-columns: 1fr 1fr;
+            /* grid-template-rows: 40px 40px 40px 40px; */
+        }
+
+        #search {
+            height: 40px;
+        }
+    }
+
+    @media screen and (max-width:590px) {
+        .filter_section {
+            grid-template-columns: 1fr;
+        }
+
+    }
+
+    .profile {
+        color: black;
+    }
+    .ourDoctor{
+        font-size: 55px;
+    }
+    .ourDoctor span{
+        color: var(--deepGreen);
+    }
+    .profile:hover {
+        text-decoration: none;
+        color: black;
+    }
+
+
+    img {
+        height: 150px;
+        width: 100%;
+    }
+
+    .item {
+        /* padding-left: 5px;
+        padding-right: 5px; */
+        display: grid;
+        /* grid-template-columns: repeat(4, 1fr); */
+        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+        grid-gap: 20px;
+        justify-items: center;
+        height: auto;
+        width: 100%;
+        margin-bottom: 20px;
+
+    }
+
+    .item-card {
+        transition: 0.5s;
+        width: 300px;
+        cursor: pointer;
+        margin-top: 40px;
+    }
+
+    .item-card-title {
+        font-size: 15px;
+        transition: 1s;
+        cursor: pointer;
+    }
+
+    .item-card-title i {
+        font-size: 15px;
+        transition: 1s;
+        cursor: pointer;
+        color: #ffa710
+    }
+
+    .doctorCard {
+        background-color: rgba(255, 255, 255, 0.831);
+        border-radius: 5px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        padding: 10px;
+
+    }
+
+    /* .doctorCard-title i:hover {
+        transform: scale(1.25) rotate(100deg);
+        color: #18d4ca;
+
+    } */
+
+    .doctorCard:hover {
+        transform: scale(1.05);
+        box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* .card-text {
+            height: 80px;
+        } */
+
+    .doctorCard::before,
+    .doctorCard::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transform: scale3d(0, 0, 1);
+        transition: transform .3s ease-out 0s;
+        background: rgba(255, 255, 255, 0.1);
+        content: '';
+        pointer-events: none;
+    }
+
+    .doctorCard::before {
+        transform-origin: left top;
+    }
+
+    .doctorCard::after {
+        transform-origin: right bottom;
+    }
+
+    /* .card:hover::before,
+    .card:hover::after,
+    .card:focus::before,
+    .card:focus::after {
+        transform: scale3d(1, 1, 1);
+    } */
+
+
+    .appointment-button {
+        cursor: pointer;
+        height: 60px;
+        width: 100%;
+        border-style: none;
+        background-color: var(--green);
+        color: black;
+    }
+
+    .appointment-button:hover {
+        background-color: var(--deepGreen);
+
+    }
+</style>
+<form method='post' class="filter_section">
+    {% csrf_token %}
+    <input type="search" name="filterByCity" id="filterByCity" placeholder="  Search by City">
+    <input type="search" name="filterByLocality" id="filterByLocality" placeholder="  Search by locality">
+    <input type="search" name="filterBySpeciality" id="filterBySpeciality" placeholder=" Search by Specialization">
+    <button id="search" type="submit">Search</button>
+</form>
+
+<div class="container-fluid mt-2">
+    <h3 class="text-center ourDoctor">Our <span>Doctors</span></h3>
+    <div class=" row1 row">
+        <div class="item">
+            {% for specialist in specialists %}
+            {% if specialist.specialist_name %}
+            <div class="doctorCard item-card card-block">
+                <a class="profile" href="{% url 'profile' specialist.id %}"> <img src="{{specialist.imageURL}}"
+                        style="height: 250px;">
+                    <h5 class="card-title  mt-3"><i class="fa-solid fa-user"></i>&nbsp;{{specialist.specialist_name}}
+                    </h5>
+                    <p class="card-text mb-0"><i class="fa-solid fa-heart"></i>&nbsp;{{specialist.profession}}</p>
+                    <p class="card-text mb-0"><i class="fa-solid fa-briefcase"></i>&nbsp;{{specialist.experience}} Years
+                    </p>
+                    <p class="card-text mb-0"><i class="fa-solid fa-indian-rupee-sign"></i>
+                        &nbsp;{{specialist.cunsultation_fees}}</p>
+                    <p class="card-text mb-0"><i class="fa-solid fa-location-dot"></i>&nbsp;{{specialist.locality}}</p>
+                    <p class="card-text mb-0">{{specialist.dist_name}} {{specialist.state_name}}</p>
+                </a>
+                <form method="post" action="{% url 'appointment' %}">
+                    {% csrf_token %}
+                    <input hidden="true" name="specialist" value="{{specialist.id}}">
+                    <button class="appointment-button btn btn-danger" type="choice">Book an appointment</button>
+                </form>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

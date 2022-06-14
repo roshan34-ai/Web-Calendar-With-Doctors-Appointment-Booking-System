@@ -1,0 +1,340 @@
+{% extends 'app1/base.html' %}
+{% block content %}
+
+<style>
+    * {
+        margin: 0;
+        padding:0 .90px;
+        box-sizing: border-box;
+        list-style: none;
+        text-align: justify;
+    }
+
+    body {
+        background-color: rgba(0, 132, 255, 0.096);
+    }
+
+    .doctorProfileContainer {
+        width: 90%;
+        height: auto;
+        /* border: 1px solid black; */
+        margin: 0 auto;
+        margin-top: 100px;
+        display: grid;
+        grid-template-columns: 20% 80%;
+        align-items: center;
+        /* box-shadow: 1px 2px 3px 2px rgb(210, 210, 210); */
+        background-color: white;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+    }
+
+    .doctorImageContainer {
+        height: auto;
+        width: 100%;
+    }
+
+    .docrotImage {
+        height: 207px;
+        width: 200px;
+        /* box-shadow: 2px 2px 3px grey; */
+        border-radius: 10px;
+        margin-bottom: 5px;
+    }
+
+    .doctorDetails {
+        margin-left: 43px;
+        margin-top: 14px;
+    }
+
+    .doctorBookAppointmentButton1 {
+        background-color: var(--green);
+    }
+
+    .callDoctorButton2 {
+        background-color: #f4ba1c;
+    }
+
+    @media screen and (max-width:990px) {
+        .doctorProfileContainer {
+            grid-template-columns: 30% 70%;
+        }
+
+        .doctorPersonalAndProfessionalContainer {
+            flex-direction: column;
+
+        }
+    }
+
+    @media screen and (max-width:650px) {
+        .doctorProfileContainer {
+            grid-template-columns: 1fr;
+            padding: 10px 10px;
+        }
+
+        .docrotImage {
+            width: 100%;
+            height: 308px;
+        }
+
+        .doctorPersonalAndProfessionalContainer {
+            flex-direction: column;
+        }
+    }
+
+    .doctorInfo {
+        height: auto;
+        width: 98%;
+        padding: 0 10px;
+        margin: 0 auto;
+        margin-top: 30px;
+        background-color: white;
+
+    }
+
+    .doctorPersonalAndProfessionalContainer {
+        height: auto;
+        width: 100%;
+        /* border: 2px solid black; */
+        display: flex;
+        margin-top: 30px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .doctorPersonalAndProfessionalContainer>div {
+        min-height: 400px;
+        max-height: auto;
+        width: 100%;
+        margin: 0 20px;
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+    }
+
+    .doctorPersonalContainer {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    }
+
+    .doctorProfessionalContainer {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+</style>
+
+{% for specialist in Consultants %}
+    {% if request.user.email == appointment.specialist_name.email %}
+
+    <div class="doctorProfileContainer">
+        <div class="doctorImageContainer">
+            <img src="{{specialist.imageURL}}" alt=""
+                class="docrotImage">
+        </div>
+
+        <div class="doctorDetails">
+            <h4><i class="fa-solid fa-user"></i>&nbsp;{{specialist.specialist_name}}</h4>
+            <ul>
+                <li><i class="fa-solid fa-graduation-cap"></i>&nbsp;{{specialist.qualification}}</li>
+                <li><i class="fa-solid fa-heart"></i>&nbsp;{{specialist.profession}}, {{specialist.dist_name}}</li>
+                <li><i class="fa-solid fa-briefcase"></i>&nbsp;{{specialist.experience}} Years ·{{specialist.cunsultation_fees}} at clinic</li>
+            </ul>
+            <form method="post" action="{% url 'appointment' %}">
+                {% csrf_token %}
+                <input hidden="true" name="specialist" value="{{specialist.id}}">
+                <button type="submit" class="btn doctorBookAppointmentButton1">Book Appointment</button>
+            </form>
+
+            
+            <!-- <a href="" class="btn callDoctorButton2">Call Doctor</a> -->
+        </div>
+    </div>
+
+    <!-- <div class="personalStatement">
+        <p><h6 class="text-center d-inline-block">Personal Statement</h6>
+            <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true"
+                aria-controls="collapseExample">
+                see
+            </a>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                Dr. Ramanjit Singh is a popular Dermatologist in DLF-III, Gurgaon. He has helped numerous patients in his 21 years of experience as a Dermatologist. He is a M.B.B.S from M.S. Ramaiah Medical College in 1991, M.D. (Dermatology, Venereology & Leprosy) from JJM Medical College in 2003. His
+                specialization in Dermatologist/ Cosmetologist. He provides most of his services like: Laser Hair Removal,
+                Acne Treatment, Hair Treatment, Pimples Treatment, Pimples Treatment, Lasers Treatment, Mole Removal
+                Procedure, Skin Care Treatment, Bleaching Treatment, Skin Diseases Treatment.
+    
+                He is currently associated with Medanta- The Medicity Sector - 38, Golf City, Gurugram. You can meet Dr.
+                Ramanjit Singh personally at Medanta- The Medicity Sector - 38, Golf City, Gurugram, Monday to Saturday,
+                from 09:00 AM to 12:00 PM. Book an appointment online with Dr. Ramanjit Singh and consult privately on
+                Lybrate.com.
+    
+                Lybrate.com has a nexus of the most experienced Dermatologists in India. You will find Dermatologists with
+                more than 30 years of experience on Lybrate.com. You can find Dermatologists online in Gurgaon and from
+                across India. View the profile of medical specialists and their reviews from other patients to make an
+                informed decision.
+                More about Dr.RamanjitSingh
+                Dr. Ramanjit Singh is a popular Dermatologist in DLF-III, Gurgaon. He has helped numerous patients in his 21
+                years of experience as a Dermatologist. He is a MBBS, MD. You can meet Dr. Ramanjit Singh personally at Dr
+                Ramanjit Singh in DLF-III, Gurgaon. Book an appointment online with Dr. Ramanjit Singh and consult privately
+                on Lybrate.com.
+    
+                Lybrate.com has a nexus of the most experienced Dermatologists in India. You will find Dermatologists with
+                more than 30 years of experience on Lybrate.com. You can find Dermatologists online in Gurgaon and from
+                across India. View the profile of medical specialists and their reviews from other patients to make an
+                informed decision.
+            </div>
+        </div>
+    </div> -->
+
+    <div class="doctorInfo">
+        <h3 class="text-center">Doctor's Info</h3>
+        <div class="doctorPersonalAndProfessionalContainer">
+            <div class="doctorPersonalContainer">
+                <label for=""><i class="fa-solid fa-user-large"></i>&nbsp;<b>Name</b></label>
+                <p>{{specialist.specialist_name}}</p>
+                <label for=""><i class="fa-solid fa-mobile-screen-button"></i>&nbsp;<b>Mobile Number</b></label>
+                <p>{{specialist.phone}}3</p>
+                <label for=""><i class="fa-solid fa-envelope"></i>&nbsp;<b>Email</b></label>
+                <p>{{specialist.email}}</p>
+                <label for=""><i class="fa-solid fa-location-dot"></i>&nbsp;<b>Address</b></label>
+                <p>{{specialist.locality}}</p>
+            </div>
+            <div class="doctorProfessionalContainer">
+                <label for=""><i class="fa-solid fa-circle-info"></i>&nbsp;<b>About</b></label>
+                <p>{{specialist.about}}</p>
+                <label for=""><i class="fa-solid fa-user-doctor"></i>&nbsp;<b>Speciality</b></label>
+                <p>{{specialist.profession}}</p>
+                <label for=""><i class="fa-solid fa-graduation-cap"></i>&nbsp; <b>Education</b></label>
+                <ul>
+                    <li>{{specialist.qualification}}</li>
+                </ul>
+                <label for=""><i class="fa-solid fa-briefcase"></i>&nbsp;<b>Experience</b></label>
+                <p>{{specialist.experience}} Years</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- perticular doctors profile -->
+    {% else %}
+    <div class="doctorProfileContainer">
+        <div class="doctorImageContainer">
+            <img src="{{specialist.imageURL}}" alt=""
+                class="docrotImage">
+        </div>
+
+        <div class="doctorDetails">
+            <h4>{{specialist.specialist_name}}</h4>
+            <ul>
+                <li>{{specialist.qualification}}</li>
+                <li>{{specialist.profession}}, {{specialist.dist_name}}</li>
+                <li>{{specialist.experience}} Years ·{{specialist.cunsultation_fees}} at clinic</li>
+            </ul>
+            <form method="post" action="{% url 'appointment' %}">
+                {% csrf_token %}
+                <input hidden="true" name="specialist" value="{{specialist.id}}">
+                <button type="submit" class="btn doctorBookAppointmentButton1">Book Appointment</button>
+            </form>
+
+            
+            <!-- <a href="" class="btn callDoctorButton2">Call Doctor</a> -->
+        </div>
+    </div>
+
+    <!-- <div class="personalStatement">
+        <p><h6 class="text-center d-inline-block">Personal Statement</h6>
+            <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true"
+                aria-controls="collapseExample">
+                see
+            </a>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                Dr. Ramanjit Singh is a popular Dermatologist in DLF-III, Gurgaon. He has helped numerous patients in his 21 years of experience as a Dermatologist. He is a M.B.B.S from M.S. Ramaiah Medical College in 1991, M.D. (Dermatology, Venereology & Leprosy) from JJM Medical College in 2003. His
+                specialization in Dermatologist/ Cosmetologist. He provides most of his services like: Laser Hair Removal,
+                Acne Treatment, Hair Treatment, Pimples Treatment, Pimples Treatment, Lasers Treatment, Mole Removal
+                Procedure, Skin Care Treatment, Bleaching Treatment, Skin Diseases Treatment.
+    
+                He is currently associated with Medanta- The Medicity Sector - 38, Golf City, Gurugram. You can meet Dr.
+                Ramanjit Singh personally at Medanta- The Medicity Sector - 38, Golf City, Gurugram, Monday to Saturday,
+                from 09:00 AM to 12:00 PM. Book an appointment online with Dr. Ramanjit Singh and consult privately on
+                Lybrate.com.
+    
+                Lybrate.com has a nexus of the most experienced Dermatologists in India. You will find Dermatologists with
+                more than 30 years of experience on Lybrate.com. You can find Dermatologists online in Gurgaon and from
+                across India. View the profile of medical specialists and their reviews from other patients to make an
+                informed decision.
+                More about Dr.RamanjitSingh
+                Dr. Ramanjit Singh is a popular Dermatologist in DLF-III, Gurgaon. He has helped numerous patients in his 21
+                years of experience as a Dermatologist. He is a MBBS, MD. You can meet Dr. Ramanjit Singh personally at Dr
+                Ramanjit Singh in DLF-III, Gurgaon. Book an appointment online with Dr. Ramanjit Singh and consult privately
+                on Lybrate.com.
+    
+                Lybrate.com has a nexus of the most experienced Dermatologists in India. You will find Dermatologists with
+                more than 30 years of experience on Lybrate.com. You can find Dermatologists online in Gurgaon and from
+                across India. View the profile of medical specialists and their reviews from other patients to make an
+                informed decision.
+            </div>
+        </div>
+    </div> -->
+
+    <div class="doctorInfo">
+        <h3 class="text-center">Doctor's Info</h3>
+        <div class="doctorPersonalAndProfessionalContainer">
+            <div class="doctorPersonalContainer">
+                <label for=""><i class="fa-solid fa-user-large"></i>&nbsp;<b>Name</b></label>
+                <p>{{specialist.specialist_name}}</p>
+                <label for=""><i class="fa-solid fa-mobile-screen-button"></i>&nbsp;<b>Mobile Number</b></label>
+                <p>{{specialist.phone}}3</p>
+                <label for=""><i class="fa-solid fa-envelope"></i>&nbsp;<b>Email</b></label>
+                <p>{{specialist.email}}</p>
+                <label for=""><i class="fa-solid fa-location-dot"></i>&nbsp;<b>Address</b></label>
+                <p>{{specialist.locality}}</p>
+            </div>
+            <div class="doctorProfessionalContainer">
+                <label for=""><i class="fa-solid fa-circle-info"></i>&nbsp;<b>About</b></label>
+                <p>{{specialist.about}}</p>
+                <label for=""><i class="fa-solid fa-user-doctor"></i>&nbsp;<b>Speciality</b></label>
+                <p>{{specialist.profession}}</p>
+                <label for=""><i class="fa-solid fa-graduation-cap"></i>&nbsp; <b>Education</b></label>
+                <ul>
+                    <li>{{specialist.qualification}}</li>
+                </ul>
+                <label for=""><i class="fa-solid fa-briefcase"></i>&nbsp;<b>Experience</b></label>
+                <p>{{specialist.experience}} Years</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+  {% endfor %}
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) 
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>-->

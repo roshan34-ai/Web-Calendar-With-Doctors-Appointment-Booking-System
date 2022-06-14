@@ -1,0 +1,102 @@
+{% extends 'app1/base.html' %}
+{% block content %}
+
+   <style>
+        * {
+            margin: 0;
+            padding: 0 .90px;
+            box-sizing: border-box;
+        }
+
+        .reSchedulingContainer {
+            height: auto;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 100px;
+        }
+
+        .reSchedulingForm {
+            height: auto;
+            width: 40%;
+            background-color: var(--green);
+            padding: 30px 20px;
+            border-radius: 10px;
+            margin-bottom: 50px;
+        }
+
+        @media screen and (max-width:1030px) {
+            .reSchedulingForm {
+                width: 60%;
+            }
+        }
+
+        @media screen and (max-width:680px) {
+            .reSchedulingForm {
+                width: 95%;
+            }
+        }
+
+        .reScheduleButton{
+            background-color: var(--deepGreen);
+            margin-top: 30px;
+            color: white;
+        }
+    </style>
+
+  <div class="reSchedulingContainer">
+    <form action="" method="post" class="reSchedulingForm">
+      {% csrf_token %}
+      <h3 class="text-center mb-4">Re-Scheduling Form</h3>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="date">Choose Date</label>
+          <input type="date" class="form-control" id="reScheduleDate" name="Date" required> 
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="reScheduleStartTime">Start Time</label>
+          <input type="time" class="form-control" id="reScheduleStartTime" name="time1" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="reScheduleEndTime">End Time</label>
+          <input type="time" class="form-control" id="reScheduleEndTime" name="time2" required>
+        </div>
+      </div>
+      <div class="form-row justify-content-center">
+        <button type="submit" class="btn reScheduleButton">Re-Schedule</button>
+      </div>
+    </form>
+  </div>
+
+
+  <!-- <script>
+    let reSchedulingForm = document.querySelector('form');
+    reSchedulingForm.addEventListener('submit', reSchedule)
+    
+    let reScheduleDate = document.getElementById('reScheduleDate');
+    let reScheduleStarttime = document.getElementById('reScheduleStartTime');
+    let reScheduleEndtime = document.getElementById('reScheduleEndTime');
+    function reSchedule(event){
+        event.preventDefault();
+
+
+        let reScheduleDateTime = {
+          reScheduleDate : reScheduleDate.value,
+          reScheduleStarttime : reScheduleStarttime.value,
+          reScheduleEndtime : reScheduleEndtime.value,
+        };
+
+        reScheduleDate.value = '';
+        reScheduleStarttime.value = '';
+        reScheduleEndtime.value = '';
+
+
+        let reScheduleDateTimeInfo = JSON.stringify(reScheduleDateTime);
+        console.log(reScheduleDateTimeInfo);
+    }
+    // console.log(doctorLogInForm)
+</script> -->
+
+{% endblock %}S

@@ -1,0 +1,435 @@
+<style>
+    * {
+        margin: 0;
+        padding: 0 .90px;
+        box-sizing: border-box;
+    }
+
+    :root {
+        --green: #1dde5aec;
+        --deepGreen: #0b8732fb;
+    }
+
+    /* Container-1 CSS start */
+    .container-1 {
+        height: auto;
+        width: 100%;
+    }
+
+    .row-1 {
+        height: auto;
+        width: 100%;
+        text-align: center;
+        margin-top: 140px;
+        display: inline-block;
+        /* background-color: rgba(0, 0, 0, 0.171); */
+    }
+
+    .row-1 h3 {
+        font-size: 65px;
+        color: var(--deepGreen);
+    }
+
+    .row-1 .h3 {
+        font-size: 65px;
+        color: black;
+    }
+
+    .row-1 p {
+        display: inline-block;
+        width: 60%;
+        font-size: 24px;
+    }
+
+    .search-section {
+        height: auto;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        margin-bottom: 150px;
+    }
+
+
+    .search-section input {
+        height: 49px;
+        width: 719px;
+        border: 1px solid #1dde5aec;
+        /* border-style: none; */
+        border-radius: 3px;
+    }
+
+    .search-section .search-button {
+        height: 49px;
+        width: 148px;
+        border-style: none;
+        background-color: var(--green);
+        color: rgb(0, 0, 0);
+        font-size: 1.5rem;
+        border-radius: 1px;
+    }
+
+
+    @media screen and (max-width:660px) {
+        .row-1 p {
+            width: 100%;
+        }
+
+        .search-section {
+            padding: 0 3px;
+        }
+
+        .row-1 h3 {
+            font-size: 40px;
+        }
+
+        .search-section .search-button {
+            font-size: 18px;
+        }
+
+    }
+
+    /* Container-1 CSS end */
+
+    /* About US Container css start*/
+    .aboutUsContainer {
+        min-height: 500px;
+        max-height: auto;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        background-color: rgba(255, 255, 255, 0.358);
+    }
+
+    .aboutUsImage {
+        height: auto;
+        width: 100%;
+    }
+
+    .aboutUsImage img {
+        height: 100%;
+        width: 90%;
+    }
+
+    .aboutUsTextContent span {
+        color: var(--deepGreen);
+    }
+
+    .aboutUsTextContent h3 {
+        font-size: 45px;
+    }
+
+    .aboutUsTextContent p {
+        font-size: 25px;
+        margin-top: 60px;
+    }
+
+    @media screen and (max-width:990px) and (min-width:750px) {
+        .aboutUsContainer {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media screen and (max-width:749px) and (min-width:480px) {
+        .aboutUsContainer {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .aboutUsImage img {
+            width: 100%;
+        }
+
+        .aboutUsTextContent h3 {
+            font-size: 35px;
+            margin-top: 20px;
+        }
+
+        .aboutUsTextContent p {
+            font-size: 20px;
+            margin-top: 40px;
+            padding: 0 10px;
+        }
+    }
+
+    /* about us container css end */
+
+
+    /* doctor container css start */
+    .doctorContainer {
+        min-height: 450px;
+        max-height: auto;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 60% 40%;
+        justify-items: flex-end;
+        margin: 50px 0;
+        background-color: rgba(255, 255, 255, 0.358);
+
+    }
+
+    .doctorTextContent {
+        height: auto;
+        width: 100%;
+        text-align: justify;
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .doctorTextContent h3 {
+        font-size: 35px;
+        margin-top: 20px;
+    }
+
+    .doctorTextContent span {
+        color: var(--deepGreen);
+    }
+
+    .doctorTextContent p {
+        font-size: 25px;
+        margin-top: 50px;
+        padding: 0 15px;
+    }
+
+    .doctorImage img {
+        height: 100%;
+        width: 100%;
+    }
+
+    .docotrButton {
+        background-color: var(--green);
+        height: 44px;
+        width: 200px;
+        margin: 0 auto;
+        border-style: none;
+        border-radius: 5px;
+        margin-top: 40px;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    .docotrButton a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .docotrButton a:hover {
+        text-decoration: none;
+        color: black;
+    }
+
+    @media screen and (max-width:990px) and (min-width:750px) {
+        .doctorContainer {
+            grid-template-columns: 60% 40%;
+        }
+    }
+
+    @media screen and (max-width:690px) and (min-width:480px) {
+        .doctorContainer {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        .doctorTextContent h3 {
+            font-size: 35px;
+            margin-top: 20px;
+        }
+
+        .doctorTextContent p {
+            font-size: 20px;
+            margin-top: 40px;
+        }
+
+        .docotrButton {
+            margin-bottom: 20px;
+        }
+    }
+
+    /* doctor container css end */
+
+    /* ask question container css start */
+    .askQuestionContainer {
+        min-height: 500px;
+        max-height: auto;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        padding: 20px 10px;
+    }
+    .askQuestionImageContainer {
+        height: auto;
+        width: 100%;
+    }
+
+    .askQuestionImageContainer img {
+        height: 100%;
+        width: 90%;
+    }
+    .askQuestionForm {
+        height: auto;
+        width: 100%;
+        border-radius: 5px;
+        padding: 20px 20px;
+    }
+
+    .askQuestionForm>div {
+        height: auto;
+        width: 100%;
+    }
+    .askQuestionForm h3 {
+        font-size: 45px;
+        margin-bottom: 10px;
+    }
+
+    .askQuestionForm p {
+        font-size: 25px;
+        margin-top: 60px;
+    }
+    .askQuestionForm span{
+        color: var(--deepGreen);
+    }
+    .questionArea {
+        width: 100%;
+    }
+
+    .submitQuestionButton {
+        background-color: var(--green);
+        height: 50px;
+        width: 180px;
+        border-style: none;
+        border-radius: 5px;
+    }
+    .submitQuestionButton a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .submitQuestionButton a:hover {
+        text-decoration: none;
+        color: black;
+    }
+    @media screen and (max-width:990px) and (min-width:750px) {
+        .askQuestionContainer {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media screen and (max-width:749px) and (min-width:480px) {
+        .askQuestionContainer {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .askQuestionForm h3 {
+            font-size: 35px;
+            margin-top: 20px;
+        }
+
+        .askQuestionForm p {
+            font-size: 20px;
+            margin-top: 40px;
+            padding: 0 10px;
+        }
+    }
+</style>
+
+
+
+{% extends 'app1/base.html' %}
+{% block content %}
+
+<!-- Container-1 start -->
+<div class="container-1">
+    <div class="row-1">
+        <h3 class="text-center"><span class="h3">Stay at Home.</span> Consult Doctors Online</h3>
+        <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt qui neque
+            minus, eaque ducimus, sapiente praesentium nulla, libero dolores tempora cupiditate suscipit repellendus
+            aliquam autem labore quis excepturi inventore quisquam eligendi enim asperiores. Corporis repellat
+            doloribus delectus ut earum quas velit aperiam ex veritatis, expedita laborum cupiditate optio .</p>
+    </div>
+    <form action="" method="post" class="search-section">
+        {% csrf_token %}
+        <input type="search" name="search" id="search" placeholder="  Search by Specialization" required>
+        <button class="search-button ">Search</button>
+    </form>
+</div>
+<!-- Container-1 end -->
+
+<!-- About US Container start-->
+<div class="aboutUsContainer" id="aboutUsContainer">
+    <div class="aboutUsImage">
+        <img src="https://thumbs.dreamstime.com/b/doctor-nurse-patient-hospital-room-doctor-nurse-patient-hospital-room-cartoon-vector-illustration-119403469.jpg"
+            alt="About Image">
+    </div>
+    <div class="aboutUsTextContent">
+        <h3 class="text-center"><Span>About</Span> Us</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, iste! Lorem ipsum,
+            dolor sit amet consectetur adipisicing elit. Reiciendis, dolorem. Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Officia non voluptatibus tempora alias nulla, id harum incidunt fuga placeat quasi! Lorem
+            ipsum dolor sit amet consectetur adipisicing elit. Quam nulla necessitatibus quo excepturi harum iste
+            dolores quibusdam aperiam nam labore.
+        </p>
+    </div>
+</div>
+<!-- About US Container end-->
+
+<!-- Our Doctors Container start -->
+<div class="doctorContainer" id="doctorContainer">
+    <div class="doctorTextContent">
+        <h3 class="text-center">Our <Span>Doctors</Span></h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, iste! Lorem
+            ipsum,dolor sit amet consectetur adipisicing elit. Reiciendis, dolorem. Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Officia non voluptatibus tempora alias nulla, id harum incidunt fuga placeat
+            quasi!
+        </p>
+        <button class="docotrButton">
+            <a href="{% url 'home' %}">Our Doctors</a>
+        </button>
+    </div>
+    <div class="doctorImage">
+        <img src="https://t4.ftcdn.net/jpg/02/74/73/01/360_F_274730119_ht4FXz4R6RnIJgPk7WeNALxxaf524Jrb.jpg"
+            alt="docotr Image">
+    </div>
+</div>
+<!-- Our Doctors Container end -->
+
+<!-- Ask question Container strat -->
+<div class="askQuestionContainer" id="askQuestionContainer">
+    <div class="askQuestionImageContainer">
+        <img src="https://scholarlyoa.com/wp-content/uploads/2020/12/help.jpg" alt="">
+    </div>
+    <form action="" method="post" class="askQuestionForm">
+        {% csrf_token %}
+        <h3 class="text-center">Ask <span>Questions</span></h3>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="name">
+                    <h5>Name</h5>
+                </label>
+                <input type="text" class="form-control" id="name" placeholder="name" name="name" required>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="email">
+                    <h5>Email</h5>
+                </label>
+                <input type="email" class="form-control" id="email" placeholder="email" name="email" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="questions">
+                    <h5>What is your Question?</h5>
+                </label><br>
+                <textarea class="questionArea" name="question" id="question" rows="5"></textarea>
+            </div>
+        </div>
+        <div class="form-row justify-content-center">
+            <button type="submit" class="submitQuestionButton">
+                Ask a Question
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock content %}

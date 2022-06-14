@@ -1,0 +1,122 @@
+{% extends 'app1/base.html' %}
+{% block content %}
+    <style>
+        * {
+            margin: 0;
+            padding: 0 .90px;
+            box-sizing: border-box;
+        }
+
+        .doctorLogInContainer {
+            height: auto;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 100px;
+        }
+
+        .doctorLogInForm {
+            height: 370px;
+            width: 40%;
+            background-color: var(--green);
+            padding: 40px 20px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+        #id_username{
+            height: 40px;
+            width: 100%;
+            margin-right: 30px;
+        }
+        #id_password{
+            height: 40px;
+            width: 100%;
+        }
+
+
+        @media screen and (max-width:1030px) {
+            .doctorLogInForm {
+                width: 60%;
+            }
+        }
+
+        @media screen and (max-width:680px) {
+            .doctorLogInForm {
+                width: 95%;
+            }
+        }
+
+        .doctorLogInButton{
+            background-color: var(--deepGreen);
+        }
+    </style>
+
+
+
+    <div class="doctorLogInContainer">
+        <form method="post" class="doctorLogInForm">
+            {% csrf_token %}
+            <h3 class="text-center mb-4">Doctor Log-In Form</h3>
+            {{form.as_p}}
+            <a href="{% url 'Dr_forgot_pass' %}">forgot password</a>
+            <div class="form-row justify-content-center">
+                <button type="submit" class="btn doctorLogInButton">Submit</button>
+            </div>
+            <h6 class="text-center mt-4"> Don't have an account?<a href="{% url 'signup' %}">Sign Up </a>here!</h6>
+        </form>
+    </div>
+
+    <!-- <script>
+        let doctorLogInForm = document.querySelector('form');
+        doctorLogInForm.addEventListener('submit', doctorLogIn)
+        
+        let doctorEmail = document.getElementById('doctorEmail');
+        let doctorPassword = document.getElementById('doctorPassword');
+        function doctorLogIn(event){
+            event.preventDefault();
+
+
+            let doctorLogInInformation = {
+                doctorEmail : doctorEmail.value,
+                doctorPassword : doctorPassword.value
+            };
+
+            doctorEmail.value = '';
+            doctorPassword.value = '';
+
+
+            let doctorLogInInfo = JSON.stringify(doctorLogInInformation);
+            console.log(doctorLogInInfo);
+        }
+        // console.log(doctorLogInForm)
+    </script>
+ -->
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) 
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
+    </script>
+
+
+</body>
+
+</html>-->
